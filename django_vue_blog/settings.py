@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-whyc1t25)acig2)=pl2sgallt99rj9h)$e24euor#0ul)&xnq@
 
 # 修改项。关闭调试模式
 # 关闭后 django 不再处理静态资源
-DEBUG = False
+DEBUG = True
 
 # 修改项。允许所有的IP访问网络服务
 ALLOWED_HOSTS = ['*']

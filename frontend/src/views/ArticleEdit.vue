@@ -2,6 +2,16 @@
   <BlogHeader/>
   <div id="article-create">
     <h3>更新文章</h3>
+    <form id="image_form">
+      <div class="form-elem">
+        <span>图片：</span>
+        <input
+            v-on:change="onFileChange"
+            type="file"
+            id="file"
+        >
+      </div>
+    </form>
     <form>
       <div class="form-elem">
         <span>标题：</span>
@@ -91,7 +101,7 @@ export default {
     // 根据用户身份选用不同的序列化器
     const that = this;
     axios
-        .get('/api/article/' + that.$route.params.id + '/')
+        .get('/api/blog/' + that.$route.params.id + '/')
         .then(function (response) {
           const data = response.data;
           that.title = data.title;
@@ -146,7 +156,7 @@ export default {
 
                   const token = localStorage.getItem('access.myblog');
                   axios
-                      .put('/api/article/' + that.articleID + '/',
+                      .put('/api/blog/' + that.articleID + '/',
                           data,
                           {
                             headers: {Authorization: 'Bearer ' + token}
@@ -167,7 +177,7 @@ export default {
           .then(function (response) {
                 if (response[0]) {
                   axios
-                      .delete('/api/article/' + that.articleID + '/',
+                      .delete('/api/blog/' + that.articleID + '/',
                           {
                             headers: {Authorization: 'Bearer ' + token}
                           })
