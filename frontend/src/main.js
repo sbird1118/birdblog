@@ -1,5 +1,5 @@
 import router from './router'
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 
 URLSearchParams.prototype.appendIfExists = function (key, value) {

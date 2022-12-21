@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from blog.models import User
 
 
@@ -32,6 +33,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
 class UserDescSerializer(serializers.ModelSerializer):
     """于文章列表中引用的嵌套序列化器"""
+
     class Meta:
         model = User
         fields = [

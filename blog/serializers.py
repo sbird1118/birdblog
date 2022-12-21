@@ -41,6 +41,7 @@ class ArticleCategoryDetailSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     """分类序列化器"""
     url = serializers.HyperlinkedIdentityField(view_name='category-detail')
+
     # HyperlinkedIdentityField前面章节有讲过，作用是将路由间的表示转换为超链接。
     # view_name参数是路由名，你必须显示指定。
     # category - detail是自动注册路由时，Router默认帮你设置的详情页面的名称，类似的还有category - list
@@ -66,6 +67,7 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):
     """标签序列化器"""
+
     def check_tag_obj_exists(self, validated_data):
         text = validated_data.get('text')
         if Tag.objects.filter(text=text).exists():
@@ -163,8 +165,10 @@ class ArticleBaseSerializer(serializers.HyperlinkedModelSerializer):
 
         return value
 
+
 class ArticleSerializer(ArticleBaseSerializer):
     """文章序列化器"""
+
     class Meta:
         model = Article
         fields = '__all__'
@@ -188,5 +192,3 @@ class ArticleDetailSerializer(ArticleBaseSerializer):
     class Meta:
         model = Article
         fields = '__all__'
-
-

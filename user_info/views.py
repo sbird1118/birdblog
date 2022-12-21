@@ -1,10 +1,9 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 
-from user_info.serializers import UserRegisterSerializer
 from user_info.permissions import IsSelfOrReadOnly
+from user_info.serializers import UserRegisterSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

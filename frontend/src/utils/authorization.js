@@ -15,7 +15,7 @@ async function authorization() {
         hasLogin = true;
         console.log('authorization access')
     }
-    // 初始 token 过期
+        // 初始 token 过期
     // 申请刷新 token
     else if (refreshToken !== null) {
         try {
@@ -30,8 +30,7 @@ async function authorization() {
             hasLogin = true;
 
             console.log('authorization refresh')
-        }
-        catch (err) {
+        } catch (err) {
             storage.clear();
             hasLogin = false;
 

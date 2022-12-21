@@ -1,4 +1,4 @@
-export default function articleGrid(){
+export default function articleGrid() {
     const imageIfExists = (article) => {
         return _imageIfExists(article)
     };
@@ -12,6 +12,7 @@ export default function articleGrid(){
         gridStyle,
     }
 }
+
 function _imageIfExists(article) {
     if (article.avatar) {
         return article.avatar.content

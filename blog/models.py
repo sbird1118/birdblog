@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.utils import timezone
 from markdown import Markdown
+
 
 # Create your models here.
 
@@ -44,6 +44,7 @@ class Tui(models.Model):
 
 class Avatar(models.Model):
     content = models.ImageField(upload_to='avatar/%Y%m%d')
+
 
 class Article(models.Model):
     # 标题
@@ -108,6 +109,7 @@ class Article(models.Model):
         # toc 是渲染后的目录
         return md_body, md.toc
 
+
 class Banner(models.Model):
     text_info = models.CharField('标题', max_length=50, default='')
     img = models.ImageField('轮播图', upload_to='banner/')
@@ -129,5 +131,3 @@ class Link(models.Model):
 
     def __str__(self):
         return self.name
-
-

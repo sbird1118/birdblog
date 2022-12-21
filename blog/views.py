@@ -1,21 +1,12 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.http import Http404
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.permissions import IsAdminUser
+from rest_framework import filters
+from rest_framework import viewsets
 
 from blog.models import Article, Category, Tag, Avatar
-from comment.models import Comment
-from rest_framework.decorators import api_view
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status, filters
-from rest_framework import mixins
-from rest_framework import generics
-from rest_framework import viewsets
+from blog.permissions import IsAdminUserOrReadOnly
 from blog.serializers import ArticleSerializer, CategorySerializer, CategoryDetailSerializer, TagSerializer, \
     ArticleDetailSerializer, AvatarSerializer
-from blog.permissions import IsAdminUserOrReadOnly
+
+
 # from blog.serializers import ArticleListSerializers, ArticleShowSerializers
 
 
@@ -106,12 +97,9 @@ from blog.permissions import IsAdminUserOrReadOnly
 #             serializer.save()
 #             return Response(serializer.data, status=status.HTTP_201_CREATED)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-from comment.permissions import IsOwnerOrReadOnly
-from comment.serializers import CommentSerializer
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
-
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = [IsAdminUserOrReadOnly]
@@ -121,7 +109,6 @@ class ArticleViewSet(viewsets.ModelViewSet):
     # 模糊匹配
     filter_backends = [filters.SearchFilter]
     search_fields = ['user__username', 'title']
-
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -140,18 +127,19 @@ class ArticleViewSet(viewsets.ModelViewSet):
         else:
             return ArticleDetailSerializer
 
+
 class CategoryViewSet(viewsets.ModelViewSet):
     """分类视图集"""
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [IsAdminUserOrReadOnly]
     pagination_class = None
+
     def get_serializer_class(self):
         if self.action == 'list':
             return CategorySerializer
         else:
             return CategoryDetailSerializer
-
 
 
 class TagViewSet(viewsets.ModelViewSet):
@@ -168,5 +156,3 @@ class AvatarViewSet(viewsets.ModelViewSet):
     queryset = Avatar.objects.all()
     serializer_class = AvatarSerializer
     permission_classes = [IsAdminUserOrReadOnly]
-
-

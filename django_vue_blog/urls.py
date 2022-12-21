@@ -17,14 +17,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from blog import views
 from rest_framework.routers import DefaultRouter
-from comment.views import CommentViewSet
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
 
+from blog import views
+from comment.views import CommentViewSet
 from user_info.views import UserViewSet
 
 router = DefaultRouter()
@@ -46,4 +46,4 @@ urlpatterns = [
 ]
 # 把媒体文件的路由注册了
 if settings.DEBUG:
-  urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

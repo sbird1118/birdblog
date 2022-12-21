@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Banner, Article, Category, Tui, Tag, Link
 
 
 # Register your models here.
