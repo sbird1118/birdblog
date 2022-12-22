@@ -20,7 +20,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
-    TokenRefreshView,
+    TokenRefreshView, TokenVerifyView,
 )
 
 from blog import views
@@ -42,6 +42,8 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # 验证Token的有效性
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     # path('api/article/', include('blog.urls', namespace='blog')),
 ]
 # 把媒体文件的路由注册了

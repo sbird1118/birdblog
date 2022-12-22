@@ -93,7 +93,7 @@ export default {
             const storage = localStorage;
             // Date.parse(...) 返回1970年1月1日UTC以来的毫秒数
             // Token 被设置为1分钟，因此这里加上60000毫秒
-            const expiredTime = Date.parse(response.headers.date) + 60000;
+            const expiredTime = Date.parse(response.headers.date) + 60000 * 60 * 24;
             // 设置 localStorage
             storage.setItem('access.myblog', response.data.access);
             storage.setItem('refresh.myblog', response.data.refresh);
